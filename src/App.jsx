@@ -1,25 +1,10 @@
-import { useState } from 'react';
-import NoteEditor from './components/NoteEditor';
-import NoteList from './components/NoteList';
-import NoteView from './components/NoteView';
+import AppRoutes from "./AppRoutes";
+import './App.css';
 
-function App() {
-  const [notes, setNotes] = useState([]);
-  const [selectedNote, setSelectedNote] = useState(null);
-
-  const handleSaveNote = (note) => {
-    setNotes([...notes, note]);
-  };
-
-  const handleSelectNote = (note) => {
-    setSelectedNote(note);
-  };
-
+function App () {
   return (
     <div className="app">
-      <NoteEditor onSave={handleSaveNote} />
-      <NoteList notes={notes} onSelectNote={handleSelectNote} />
-      <NoteView note={selectedNote} />
+      <AppRoutes />
     </div>
   );
 }

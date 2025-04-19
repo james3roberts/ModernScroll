@@ -1,13 +1,15 @@
-import NoteEditor from '../components/NoteEditor';
-import NoteList from '../components/NoteList';
-import NoteView from '../components/NoteView';
+import { useNavigate } from "react-router-dom";
 
-function Home() {
-  return (
-    <div style={{ display: 'flex', gap: '20px', padding: '20px' }}>
-      <NoteList />
-      <NoteEditor />
-      <NoteView />
+function Home (){
+  const navigate = useNavigate();
+
+  return(
+    <div className="home-container">
+      <h1>Welcome to ModernScroll</h1>
+      <button onClick = {()=> navigate('/setup')}>First-Time Setup</button>
+      <button onClick = {()=> navigate ('/new')}>Create New Note</button>
+      <button onClick = {()=> navigate ('/notes')}>View Saved Notes</button>
+      <button disabled> AI summary(Comming Soon)</button>
     </div>
   );
 }
