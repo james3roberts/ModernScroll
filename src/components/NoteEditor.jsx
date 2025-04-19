@@ -1,35 +1,49 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-const NoteEditor = ({ onSave }) => {
-  const [noteTitle, setNoteTitle] = useState('');
-  const [noteContent, setNoteContent] = useState('');
+const NoteEditor = ({onSave}) => {
+  const [title,setTitle]= useState('');
+  const [note, setNote]=useState('');
+  const [references, setReferences]=useState('');
+  const [lookup, setLookup] =useState('');
 
-  const handleSave = () => {
-    if (noteTitle && noteContent) {
-      onSave({ title: noteTitle, content: noteContent });
-      setNoteTitle('');
-      setNoteContent('');
-    }
+  const handleSave = () =>{
+    onSave({title, note, references, lookup});
+    setTitle('');
+    setNote('');
+    setReferences('');
+    setLookup('');
   };
 
-  return (
+  return(
     <div className="note-editor">
-      <h1>Modern Scroll</h1>
-      <h2> Welcome to this week's sermon!</h2>
       <input
-        type="text"
-        placeholder="Note Title"
-        value={noteTitle}
-        onChange={(e) => setNoteTitle(e.target.value)}
+      type="text"
+      placeholder="Note Title"
+      value={title}
+      onChange={(e)=> setTitle(e.target.value)}
+      className="title-input"
       />
+
       <textarea
-        placeholder="Write your note here..."
-        value={noteContent}
-        onChange={(e) => setNoteContent(e.target.value)}
+      placeholder="Write your notes here..."
+      value={note}
+      onChange={(e) =>setNote(e.target.value)}
+      className="note-box"
       />
-      <button onClick={handleSave}>Save Note</button>
+
+      <div className="extra-boxes">
+        <textarea
+        placeholder="Reference List"
+        value={references}
+        onChange={(e)=> setReferences(e.target.value)}
+        />
+        <textarea
+        placeholder="Things to look up"
+        value={lookup}
+        onChange={(e)=> setLookup(e.target.value)}
+        />
+        </div>
+        <button onClick={handleSave}>Save Note</button>
     </div>
   );
 };
-
-export default NoteEditor;
